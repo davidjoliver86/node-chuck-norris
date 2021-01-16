@@ -2,13 +2,13 @@ orbs:
   heroku: circleci/heroku@1.2.4
 version: 2.1
 jobs:
-  derp:
+  auth:
     executor: heroku/default
     steps:
-      - run:
-          command: docker ps
+      - setup_remote_docker:
+          version: 19.03.13
 workflows:
   heroku_deploy:
     jobs:
-      - derp
+      - auth
       - heroku/push-docker-image
