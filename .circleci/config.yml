@@ -1,7 +1,14 @@
 orbs:
   heroku: circleci/heroku@1.2.4
 version: 2.1
+jobs:
+  derp:
+    executor: heroku/default
+    steps:
+      - run:
+          command: docker ps
 workflows:
   heroku_deploy:
     jobs:
+      - derp
       - heroku/push-docker-image
