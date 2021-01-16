@@ -1,0 +1,14 @@
+{
+  "name": "node-chuck-norris",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chucknorris-io": "^1.0.5"
+  }
+}
