@@ -8,9 +8,11 @@ jobs:
       - heroku/install
       - setup_remote_docker:
           version: 19.03.13
-      - heroku/push-docker-image:
-          process-types: web
-      - heroku/release-docker-image
+      - run:
+          command: |
+            heroku container:login
+            heroku container:push -a ${HEROKU_APP_NAME} web
+            heroku container:release -a ${HEROKU_APP_NAME} web
 workflows:
   heroku_deploy:
     jobs:
