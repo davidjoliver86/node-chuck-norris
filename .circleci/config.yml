@@ -1,0 +1,20 @@
+orbs:
+  heroku: circleci/heroku@1.2.4
+version: 2.1
+jobs:
+  build:
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+      - setup_remote_docker:
+          version: 19.03.13
+      - run:
+          command: |
+            heroku container:login
+            heroku container:push -a ${HEROKU_APP_NAME} web
+            heroku container:release -a ${HEROKU_APP_NAME} web
+workflows:
+  heroku_deploy:
+    jobs:
+      - build
