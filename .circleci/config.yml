@@ -2,14 +2,16 @@ orbs:
   heroku: circleci/heroku@1.2.4
 version: 2.1
 jobs:
-  auth:
+  build:
     executor: heroku/default
     steps:
       - heroku/install
       - setup_remote_docker:
           version: 19.03.13
+      - heroku/push-docker-image:
+          process-types: web
+      - heroku/release-docker-image
 workflows:
   heroku_deploy:
     jobs:
-      - auth
-      - heroku/push-docker-image
+      - build
