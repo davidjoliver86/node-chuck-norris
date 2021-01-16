@@ -11,6 +11,7 @@ jobs:
       - run:
           command: |
             heroku container:login
+            ls -l
             heroku container:push -a ${HEROKU_APP_NAME} web
             heroku container:release -a ${HEROKU_APP_NAME} web
 workflows:
